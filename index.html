@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Image Gallery</title>
+    <link rel="stylesheet" href="./style.css">
+    <link href='https://unpkg.com/css.gg/icons/all.css' rel='stylesheet'>
+    <script defer src="./script.js"></script>
+</head>
+<body>
+    <div class="container">
+        <h1 class="title">Image<span>Gallery</span></h1>
+        <div class="img-container">
+            <div class="chevronBox left"><i id="chevronLeft" class="gg-chevron-left"></i></div>
+            <div class="chevronBox right"><i id="chevronRight" class="gg-chevron-right"></i></div>
+            <div class="chevronBox zoom-in"><i id="zoomIn" class="gg-arrows-expand-right"></i></div>
+            <div class="chevronBox zoom-out"><i id="zoomOut" class="gg-minimize-alt"></i></div>
+        </div>
+        <div class="info" id="infoContainer">
+            <p id="playing"></p>
+            <p id="imgCount"></p>
+        </div>
+        <p id="imgContainerParagraph">Upload images from your device to start .</p>
+        <div class="buttons-container">
+            <button class="btn" id="autoPlayBtn"><i id="play" class="gg-play-button"></i><i id="stop" class="gg-play-stop"></i><span>Play</span></button>
+            <!-- <button class="btn" id="useTemplateImgs">Use Template Images</button> -->
+            <label for="addMore" id="addMoreBtn" class="btn"><input type="file" name="add-more" id="addMore" accept="image/png, image/jpeg, image/jpg" multiple><i id="plus" class="gg-math-plus"></i><span>Upload Images</span></label>
+            <button class="btn" id="trashBtn"><i id="trashIcon" class="gg-trash"></i><span>Clear All</span></button>
+        </div>
+    </div>
+</body>
+</html>
