@@ -191,12 +191,35 @@ input, .btn{
 #trashIcon{
     margin-right: 1rem;
 }
+.off{
+    display: none;
+}
+input#delayInput{
+    width: 4rem;
+    height: 2.5rem;
+    border: 2px solid;
+    align-self: center;
+    padding: 0.3rem;
+    
+    font-family: "Poppins", sans-serif;
+    font-size: 1rem;
+    font-weight: 500;
+    letter-spacing: 0.2rem;
+}
+input#delayInput:focus-visible{
+    outline: none;
+}
+
+#timerIcon{
+    margin-right: 1rem;
+}
+
+#setBtn{
+    padding: 0.5rem 0.7rem;
+}
 
 img{
     width: 100%;
-    /* opacity: 1; */
-    /* position: absolute; */
-    /* background-color: rgb(30, 30, 30); */
     transition: opacity 0.3s;
 }
 img.active{
@@ -244,11 +267,23 @@ img.active{
     .chevronBox:hover{
         background-color: transparent;
     }
+
+    input::-webkit-outer-spin-button,
+    input::-webkit-inner-spin-button {
+        -webkit-appearance: none;
+        margin: 0;
+    }
 }
 
 @media only screen and (min-width: 721px) and (max-width: 1024px) {
     .container{
         width: 80%;
+    }
+
+    input::-webkit-outer-spin-button,
+    input::-webkit-inner-spin-button {
+        -webkit-appearance: none;
+        margin: 0;
     }
 }
 
@@ -290,5 +325,11 @@ img.active{
     }
     .chevronBox:hover{
         background-color: transparent;
+    }
+
+    input::-webkit-outer-spin-button,
+    input::-webkit-inner-spin-button {
+        -webkit-appearance: none;
+        margin: 0;
     }
 }
