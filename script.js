@@ -4,14 +4,14 @@ const templateImgsBtn = document.querySelector("#useTemplateImgs");
 const addMoreInput = document.querySelector("#addMore");
 const playIcon = document.querySelector("#play.gg-play-button");
 const stopIcon = document.querySelector("#stop.gg-play-stop");
-stopIcon.classList.add("off");
+turnOff(stopIcon);
 const trashBtn = document.querySelector("#trashBtn");
 const imgContainer = document.querySelector(".img-container");
 const chevronLeft = document.querySelector(".chevronBox.left");
 const chevronRight = document.querySelector(".chevronBox.right");
 const zoomIn = document.querySelector(".chevronBox.zoom-in");
 const zoomOut = document.querySelector(".chevronBox.zoom-out");
-zoomOut.classList.add("disabled");
+disableButton(zoomOut);
 const infoContainer = document.querySelector("#infoContainer");
 const imgCount = document.querySelector("#imgCount");
 let count = 0;
@@ -22,9 +22,9 @@ let imgArray = [];
 const setDelayBtn = document.querySelector("#setBtn");
 const delayInput = document.querySelector("#delayInput");
 const delayBtn = document.querySelector("#delayBtn");
-setDelayBtn.classList.add("off");
-delayInput.classList.add("off");
-delayBtn.classList.add("off");
+turnOff(setDelayBtn);
+turnOff(delayInput);
+turnOff(delayBtn);
 let delay = 5000;
 // let templateImgs = [];
 let currentIndex = 0;
@@ -32,7 +32,7 @@ let autoPlayStatus = false;
 let autoPlay = setInterval(function(){
     imgArray.push(imgArray.shift());
     for(let i = 0; i < imgArray.length; i++){
-        imgArray[i].style.display = "none";
+        displayNone(imgArray[i]);
         imgArray[0].style.display = "block";
         imgArray[0].style.animation = `${delay / 1000}s scale, fadeIn 2s`;
     }
@@ -41,8 +41,8 @@ let autoPlay = setInterval(function(){
 clearInterval(autoPlay);
 collapseImgContainer(imgArray);
 handleInfoMsgs(autoPlayStatus, count);
-count === 0 ? trashBtn.classList.add("off") : trashBtn.classList.remove("off");
-count === 0 ? playBtn.classList.add("off") : playBtn.classList.remove("off");
+count === 0 ? turnOff(trashBtn) : turnOn(trashBtn);
+count === 0 ? turnOff(playBtn) : turnOn(playBtn);
 
 
     
@@ -55,12 +55,12 @@ playBtn.addEventListener("click", () =>{
     if(imgArray.length > 1){
         handleBtnContent(playIcon, stopIcon);
         if(autoPlayStatus === false){
-            chevronLeft.style.display = "none";
-            chevronRight.style.display = "none";
+            displayNone(chevronLeft);
+            displayNone(chevronRight);
             autoPlay = function(){
                 imgArray.push(imgArray.shift());
                 for(let i = 0; i < imgArray.length; i++){
-                    imgArray[i].style.display = "none";
+                    displayNone(imgArray[i]);
                     imgArray[0].style.display = "block";
                     imgArray[0].style.animation = `${delay / 1000}s scale, fadeIn 2s`;
                 }
@@ -72,7 +72,7 @@ playBtn.addEventListener("click", () =>{
             return autoPlay = setInterval(function(){
                 imgArray.push(imgArray.shift());
                 for(let i = 0; i < imgArray.length; i++){
-                    imgArray[i].style.display = "none";
+                    displayNone(imgArray[i]);
                     imgArray[0].style.display = "block";
                     imgArray[0].style.animation = `${delay / 1000}s scale, fadeIn 2s`;
                 }
@@ -84,7 +84,7 @@ playBtn.addEventListener("click", () =>{
             trashBtn.style.pointerEvents = "all";
             clearInterval(autoPlay);
             for(let i = 0; i < imgArray.length; i++){
-                imgArray[i].style.display = "none";
+                displayNone(imgArray[i]);
                 imgArray[i].style.animation = "";
             }
             imgArray[0].style.display = "block";
@@ -101,7 +101,7 @@ addMoreInput.addEventListener("change", () => {
     trashBtn.style.display = "flex";
     playBtn.style.display = "flex";
         for(let i = 0; i < imgArray.length; i++){
-            imgArray[i].classList.add("off");
+            turnOff(imgArray[i]);
             imgArray[i].classList.remove("active");
         }
         for (let i = 0; i < addMoreInput.files.length; i++){
@@ -112,28 +112,28 @@ addMoreInput.addEventListener("change", () => {
                 imgContainer.appendChild(img);
                 collapseImgContainer(imgArray);
             }
-            imgContainerParagraph.style.display = "none";
+            displayNone(imgContainerParagraph);
             imgContainer.style.backgroundColor = "rgb(30, 30, 30)";
             imgArray.push(img);
         }
         for(let i = 0; i < imgArray.length; i++){
-            imgArray[i].style.display = "none";
+            displayNone(imgArray[i]);
             imgArray[i].classList.remove("active");
         }
         imgArray[0].style.display = "block";
         imgArray[0].classList.toggle("active");
-        trashBtn.classList.remove("disabled");
+        enableButton(trashBtn);
         updateCount(imgArray);
         handleInfoMsgs(status, count);
-        count > 1 ? playBtn.classList.remove("disabled") : playBtn.classList.add("disabled");
-        count > 1 ? delayBtn.classList.remove("disabled") : delayBtn.classList.add("disabled");
-        count >= 1 ? delayBtn.classList.remove("off") : delayBtn.classList.add("off");
+        count > 1 ? enableButton(playBtn) : disableButton(playBtn);
+        count > 1 ? enableButton(delayBtn) : disableButton(delayBtn);
+        count >= 1 ? turnOn(delayBtn) : turnOff(delayBtn);
 })
 
 chevronRight.addEventListener("click", () => {
     if(imgArray.length === 1){return;}
     for(let i = 0; i < imgArray.length; i++){
-        imgArray[i].style.display = "none";
+        displayNone(imgArray[i]);
         imgArray[i].classList.remove("active");
     }
     displayImg(currentIndex + 1);
@@ -143,7 +143,7 @@ chevronRight.addEventListener("click", () => {
 chevronLeft.addEventListener("click", () => {
     if(imgArray.length === 1){return;}
     for(let i = 0; i < imgArray.length; i++){
-        imgArray[i].style.display = "none";
+        displayNone(imgArray[i]);
         imgArray[i].classList.remove("active");
     }
     displayImg(currentIndex - 1);
@@ -152,15 +152,15 @@ chevronLeft.addEventListener("click", () => {
 zoomIn.addEventListener("click", () => {
     imgContainer.classList.toggle("expanded");
     infoContainer.classList.toggle("expanded");
-    zoomIn.classList.add("disabled");
-    zoomOut.classList.remove("disabled");
+    disableButton(zoomIn);
+    enableButton(zoomOut);
 })
 
 zoomOut.addEventListener("click", () => {
     imgContainer.classList.toggle("expanded");
     infoContainer.classList.toggle("expanded");
-    zoomIn.classList.remove("disabled");
-    zoomOut.classList.add("disabled");
+    enableButton(zoomIn);
+    disableButton(zoomOut);
 })
 
 trashBtn.addEventListener("click", () => {
@@ -186,9 +186,9 @@ setDelayBtn.addEventListener("click", () => {
     delay = delayInput.value;
     delay < 2 ? delay = 2 : delay;
     delay *= 1000;
-    setDelayBtn.classList.add("off");
-    delayInput.classList.add("off");
-    delayBtn.classList.remove("off");
+    turnOff(setDelayBtn);
+    turnOff(delayInput);
+    turnOn(delayBtn);
     enableButton(playBtn);
     enableButton(trashBtn);
     clearInput(delayInput);
@@ -200,21 +200,21 @@ delayBtn.addEventListener("click", () => {
         disableButton(delayBtn);
         return;
     }else{
-        delayBtn.classList.add("off");
-        setDelayBtn.classList.remove("off");
-        delayInput.classList.remove("off");
+        turnOff(delayBtn);
+        turnOn(setDelayBtn);
+        turnOn(delayInput);
         
         autoPlayStatus = false;
         clearInterval(autoPlay);
         disableButton(playBtn);
         removePointerEvents(playBtn);
-        playIcon.classList.remove("off");
-        stopIcon.classList.add("off");
+        turnOn(playIcon);
+        turnOff(stopIcon);
         playBtn.innerHTML = `<i id="play" class="gg-play-button"></i><span>Play</span>`;
         disableButton(trashBtn);
         removePointerEvents(trashBtn);
         for(let i = 0; i < imgArray.length; i++){
-            imgArray[i].style.display = "none";
+            displayNone(imgArray[i]);
             imgArray[i].style.animation = "";
         }
         imgArray[0].style.display = "block";
@@ -232,7 +232,7 @@ function displayImg(i){
     if(i < 0){i = imgArray.length - 1;}
     
     imgArray[currentIndex].classList.remove("active");
-    imgArray[currentIndex].style.display = "none";
+    displayNone(imgArray[currentIndex]);
     imgArray[i].style.display = "block";
     imgArray[i].classList.add("active");
 
@@ -245,33 +245,33 @@ function checkArrayLength(array){
         imgContainerParagraph.style.color = "white";
         imgContainerParagraph.innerHTML = "You need at least 2 images to use autoplay.";
         imgContainerParagraph.style.backgroundColor = "#c1121f";
-        playBtn.classList.add("disabled");
+        disableButton(playBtn);
         return array.length;
     }else{
-        imgContainerParagraph.style.display = "none";
+        displayNone(imgContainerParagraph);
         imgContainerParagraph.style.color = "rgb(30, 30, 30)";
         imgContainerParagraph.style.fontSize = "";
         imgContainerParagraph.innerHTML = "";
         imgContainerParagraph.style.backgroundColor = "";
-        playBtn.classList.remove("disabled");
+        enableButton(playBtn);
     }
 }
 
 function handleBtnContent(icon1, icon2){
     if(icon1.classList.contains("off")){
-        icon1.classList.remove("off");
-        icon2.classList.add("off");
+        turnOn(icon1);
+        turnOff(icon2);
         playBtn.innerHTML = `<i id="play" class="gg-play-button"></i><span>Play</span>`;
     }
     else if(icon2.classList.contains("off")){
-        icon2.classList.remove("off");
-        icon1.classList.add("off");
+        turnOn(icon2);
+        turnOff(icon1);
         playBtn.innerHTML = `<i id="stop" class="gg-play-stop"></i><span>Stop</span>`;
     }
 }
 
 function collapseImgContainer(array){
-    array.length < 1 ? imgContainer.style.display = "none" : imgContainer.style.display = "flex";
+    array.length < 1 ? displayNone(imgContainer) : imgContainer.style.display = "flex";
 }
 
 function updateCount(array){
@@ -310,4 +310,16 @@ function removePointerEvents(button){
 function enableButton(button){
     button.classList.remove("disabled");
     button.style.pointerEvents = "all";
+}
+
+function turnOff(element){
+    element.classList.add("off");
+}
+
+function turnOn(element){
+    element.classList.remove("off");
+}
+
+function displayNone(element){
+    element.style.display = "none";
 }
