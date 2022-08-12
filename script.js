@@ -19,6 +19,7 @@ imgCount.innerHTML = `${count} images`;
 const playingMsg = document.querySelector("#playing");
 const imgContainerParagraph = document.querySelector("#imgContainerParagraph");
 let imgArray = [];
+// let templateImgs = [];
 const setDelayBtn = document.querySelector("#setBtn");
 const delayInput = document.querySelector("#delayInput");
 const delayBtn = document.querySelector("#delayBtn");
@@ -26,7 +27,6 @@ turnOff(setDelayBtn);
 turnOff(delayInput);
 turnOff(delayBtn);
 let delay = 5000;
-// let templateImgs = [];
 let currentIndex = 0;
 let autoPlayStatus = false;
 let autoPlay = setInterval(function(){
