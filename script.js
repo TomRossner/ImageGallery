@@ -1,7 +1,7 @@
 const buttons = document.querySelectorAll(".btn");
 const playBtn = document.querySelector("#autoPlayBtn");
 const templateImgsBtn = document.querySelector("#useTemplateImgs");
-const addMoreInput = document.querySelector("#addMore");
+const uploadImages = document.querySelector("#addMore");
 const playIcon = document.querySelector("#play.gg-play-button");
 const stopIcon = document.querySelector("#stop.gg-play-stop");
 turnOff(stopIcon);
@@ -78,9 +78,10 @@ playBtn.addEventListener("click", () =>{
                 imgArray.push(imgArray.shift());
                 for(let i = 0; i < imgArray.length; i++){
                     displayNone(imgArray[i]);
-                    imgArray[0].style.display = "block";
-                    imgArray[0].style.animation = `${delay / 1000}s scale, fadeIn 2s`;
+                    imgArray[i].classList.remove("active");
                 }
+                displayImg(imgArray[currentIndex]);
+                imgArray[currentIndex].style.animation = `${delay / 1000}s scale, fadeIn 2s`;
                 }, delay);
         }
         if(autoPlayStatus === true){
@@ -90,9 +91,10 @@ playBtn.addEventListener("click", () =>{
             clearInterval(autoPlay);
             for(let i = 0; i < imgArray.length; i++){
                 displayNone(imgArray[i]);
+                imgArray[i].classList.remove("active");
                 imgArray[i].style.animation = "";
             }
-            imgArray[0].style.display = "block";
+            displayImg(imgArray[currentIndex]);
             handleInfoMsgs(autoPlayStatus, count);
             chevronLeft.style.display = "";
             chevronRight.style.display = "";
@@ -102,21 +104,20 @@ playBtn.addEventListener("click", () =>{
     
 });
 
-addMoreInput.addEventListener("change", () => {
+uploadImages.addEventListener("change", () => {
     trashBtn.style.display = "flex";
     playBtn.style.display = "flex";
         for(let i = 0; i < imgArray.length; i++){
-            turnOff(imgArray[i]);
             imgArray[i].classList.remove("active");
         }
-        for (let i = 0; i < addMoreInput.files.length; i++){
+        for (let i = 0; i < uploadImages.files.length; i++){
             let img = document.createElement("img");
-            img.src = URL.createObjectURL(addMoreInput.files[i]);
-            img.onload = () => {
+            img.src = URL.createObjectURL(uploadImages.files[i]);
+            img.addEventListener("load", () => {
                 URL.revokeObjectURL(this.src);
                 imgContainer.appendChild(img);
                 collapseImgContainer(imgArray);
-            }
+            })
             displayNone(imgContainerParagraph);
             imgContainer.style.backgroundColor = "rgb(30, 30, 30)";
             imgArray.push(img);
@@ -125,8 +126,7 @@ addMoreInput.addEventListener("change", () => {
             displayNone(imgArray[i]);
             imgArray[i].classList.remove("active");
         }
-        imgArray[0].style.display = "block";
-        imgArray[0].classList.toggle("active");
+        displayImg(imgArray[currentIndex]);
         enableButton(trashBtn);
         updateCountMsg(imgArray);
         handleInfoMsgs(status, count);
@@ -296,9 +296,9 @@ clearCurrent.addEventListener("click", () => {
     // Update the displayed image
     displayImg(imgArray[currentIndex]);
     
-    function clearIndex(array, elementIndexToClear){
+    function clearIndex(array, indexToClear){
         // Clears the the element in the array at current index.
-        array.splice(elementIndexToClear, 1);
+        array.splice(indexToClear, 1);
         return array;
     }
 })
@@ -308,6 +308,7 @@ clearCurrent.addEventListener("click", () => {
 // FUNCTIONS
 
 function displayImg(image){
+// Displays image and adds transition.
     image.style.display = "block";
     image.classList.add("active");
 }
@@ -388,7 +389,7 @@ function disableButton(button){
 }
 
 function removePointerEvents(button){
-// Removes all pointer events from a button so it cannot be clicked.
+// Removes all pointer events from a button.
     button.style.pointerEvents = "none";
 }
 
@@ -414,6 +415,7 @@ function displayNone(element){
 }
 
 function determineCurrentIndex(index, smallestIndex, largestIndex){
+// Checks if the index is smaller than 0, set to be the largest index.
     if(index < 0){
         index = largestIndex;
     } else if(index > largestIndex){

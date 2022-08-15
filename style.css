@@ -22,6 +22,7 @@ body{
     font-size: 2.5rem;
     font-weight: 200;
     text-align: center;
+    text-transform: uppercase;
 }
 
 .title span{
@@ -303,6 +304,7 @@ input#delayInput:focus-visible{
 img{
     width: 100%;
     transition: opacity 0.3s;
+    opacity: 0;
 }
 img.active{
     opacity: 1;
