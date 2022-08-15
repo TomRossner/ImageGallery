@@ -383,14 +383,14 @@ function clearInput(input){
     input.value = "";
 }
 
-function disableButton(button){
-// Adds a class that disables a button.
-    button.classList.add("disabled");
-}
-
 function removePointerEvents(button){
 // Removes all pointer events from a button.
     button.style.pointerEvents = "none";
+}
+
+function disableButton(button){
+// Adds a class that disables a button.
+    button.classList.add("disabled");
 }
 
 function enableButton(button){
