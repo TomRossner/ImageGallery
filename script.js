@@ -222,7 +222,8 @@ delayBtn.addEventListener("click", () => {
             displayNone(imgArray[i]);
             imgArray[i].style.animation = "";
         }
-        imgArray[0].style.display = "block";
+        // imgArray[0].style.display = "block";
+        displayImg(imgArray[currentIndex]);
         // handleInfoMsgs(autoPlayStatus, count);
         chevronLeft.style.display = "";
         chevronRight.style.display = "";
