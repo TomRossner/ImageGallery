@@ -1,7 +1,9 @@
 const buttons = document.querySelectorAll(".btn");
 const playBtn = document.querySelector("#autoPlayBtn");
 const templateImgsBtn = document.querySelector("#useTemplateImgs");
-const uploadImages = document.querySelector("#addMore");
+const uploadBtn = document.querySelector("#uploadBtn");
+uploadBtn.classList.add("animated");
+const uploadInput = document.querySelector("#uploadInput");
 const playIcon = document.querySelector("#play.gg-play-button");
 const stopIcon = document.querySelector("#stop.gg-play-stop");
 turnOff(stopIcon);
@@ -48,6 +50,7 @@ collapseImgContainer(imgArray);
 handleInfoMsgs(autoPlayStatus, count);
 count === 0 ? turnOff(trashBtn) : turnOn(trashBtn);
 count === 0 ? turnOff(playBtn) : turnOn(playBtn);
+
 
 
 // EVENT LISTENERS
@@ -103,15 +106,16 @@ playBtn.addEventListener("click", () =>{
     
 });
 
-uploadImages.addEventListener("change", () => {
+uploadInput.addEventListener("change", () => {
+    uploadBtn.classList.remove("animated");
     trashBtn.style.display = "flex";
     playBtn.style.display = "flex";
         for(let i = 0; i < imgArray.length; i++){
             imgArray[i].classList.remove("active");
         }
-        for (let i = 0; i < uploadImages.files.length; i++){
+        for (let i = 0; i < uploadInput.files.length; i++){
             let img = document.createElement("img");
-            img.src = URL.createObjectURL(uploadImages.files[i]);
+            img.src = URL.createObjectURL(uploadInput.files[i]);
             img.addEventListener("load", () => {
                 URL.revokeObjectURL(this.src);
                 imgContainer.appendChild(img);
@@ -272,6 +276,7 @@ clearCurrent.addEventListener("click", () => {
         disableButton(trashBtn);
         disableButton(playBtn);
         disableButton(delayBtn);
+        uploadBtn.classList.add("animated");
         return;
     }
     // Update the displayed image
@@ -301,6 +306,7 @@ clearAll.addEventListener("click", () => {
     updateCountMsg(imgArray);
     handleInfoMsgs(status, count);
     collapseImgContainer(imgArray);
+    uploadImagesBtn.classList.add("animated");
 })
 
 
