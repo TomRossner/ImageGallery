@@ -29,7 +29,21 @@
             <button class="btn" id="autoPlayBtn"><i id="play" class="gg-play-button"></i><i id="stop" class="gg-play-stop"></i><span>Play</span></button>
             <!-- <button class="btn" id="useTemplateImgs">Use Template Images</button> -->
             <label for="addMore" id="addMoreBtn" class="btn"><input type="file" name="add-more" id="addMore" accept="image/png, image/jpeg, image/jpg" multiple><i id="plus" class="gg-math-plus"></i><span>Upload Images</span></label>
-            <button class="btn" id="trashBtn"><i id="trashIcon" class="gg-trash"></i><span>Clear All</span></button>
+            <div class="trash" id="trashContainer">
+                <button class="btn" id="trashBtn">
+                    <i id="trashIcon" class="gg-trash"></i>
+                    <i id="trashChevronDownIcon" class="gg-chevron-down"></i>
+                    
+                    <!-- <span>Clear All</span> -->
+                </button>
+                <div class="clear-options">
+                    <ul>
+                        <li id="clearCurrent">Clear current image</li>
+                        <li id="clearAll">Clear all images</li>
+                    </ul>
+                </div>
+            </div>
+            
         </div>
     </div>
 </body>

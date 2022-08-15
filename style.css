@@ -197,9 +197,82 @@ input, .btn{
 #plus.gg-math-plus{
     margin-right: 1rem;
 }
-#trashIcon{
-    margin-right: 1rem;
+
+
+.trash{
+    margin-left: 0.3rem;
 }
+#trashIcon{
+    margin-right: 0.5rem;
+}
+#trashChevronDownIcon{
+    margin: 0;
+}
+#trashBtn{
+    padding: 0.5rem 0.5rem 0.65rem 1rem;
+    overflow: hidden;
+    position: relative;
+    margin-left: 0;
+    display: flex;
+    align-items: center;
+    margin-bottom: 0;
+}
+#trashBtn.off{
+    display: none;
+}
+
+#trashChevronDownIcon.gg-chevron-down{
+    transform: rotate(0deg);
+    transition: transform 0.2s;
+}
+#trashChevronDownIcon.gg-chevron-down.open{
+    transform: rotateZ(180deg);
+}
+.clear-options{
+    /* display: none; */
+    position: absolute;
+    transform: translateY(-25%);
+    transition: transform 0.3s, opacity 0.3s;
+    opacity: 0;
+    pointer-events: none;
+    z-index: -1;
+}
+.clear-options.open{
+    position: absolute;
+    display: block;
+    transform: translateY(0%);
+    background-color: rgb(230, 230, 230);
+    text-align: left;
+    opacity: 1;
+    z-index: unset;
+    pointer-events: all;
+}
+.clear-options ul{
+    list-style: none;
+    font-family: "Poppins", sans-serif;
+    font-size: inherit;
+    font-weight: 400;
+}
+.clear-options:hover{
+    background: rgb(230, 230, 230);
+    color: rgb(30, 30, 30);
+}
+
+.clear-options li{
+    padding: 0.5rem 1rem;
+    cursor: pointer;
+}
+.clear-options li:hover{
+    background-color: rgb(30, 30, 30);
+    color: rgb(240, 240, 240);
+}
+
+.disabled{
+    cursor: not-allowed;
+    background-color: rgb(240, 240, 240);
+    color: rgb(160, 160, 160);
+}
+
 .off{
     display: none;
 }
@@ -259,6 +332,18 @@ img.active{
     }
 }
 
+@keyframes trashOptions {
+    0%{
+        transform: translateY(0%);
+        height: 0;
+    }
+
+    100%{
+        height: fit-content;
+        transform: translateY(-5%);
+    }
+}
+
 
 
 /* MEDIA QUERIES */
@@ -282,6 +367,32 @@ img.active{
         -webkit-appearance: none;
         margin: 0;
     }
+
+    #trashContainer{
+        margin-left: 0.3rem;
+        direction: rtl;
+    }
+    #trashBtn{
+        justify-content: space-between;
+        direction: ltr;
+        margin-bottom: 0;
+    }
+
+    .clear-options{
+        transform: translateY(-25%) translateX(-2.5%);
+        text-align: left;
+    }
+    
+    .clear-options.open{
+        position: absolute;
+        display: block;
+        transform: translateY(0%) translateX(-2.5%);
+        background-color: rgb(230, 230, 230);
+        text-align: left;
+        opacity: 1;
+        z-index: unset;
+        pointer-events: all;
+    }
 }
 
 @media only screen and (min-width: 721px) and (max-width: 1024px) {
@@ -294,7 +405,6 @@ img.active{
         -webkit-appearance: none;
         margin: 0;
     }
-
 }
 
 @media only screen and (max-width: 720px){
@@ -322,14 +432,7 @@ img.active{
     #trashIcon.gg-trash{
         margin: 0;
     }
-    #addMoreBtn,
-    #autoPlayBtn,
-    #trashBtn,
-    #delayBtn{
-        min-width: 4rem;
-        margin: 0 0.2rem;
-        min-height: 2.5rem;
-    }
+    
 
     .chevronBox{
         display: block;
@@ -350,7 +453,78 @@ img.active{
         margin: 0;
     }
 
+    #trashContainer{
+        margin-left: 0;
+        direction: rtl;
+        margin-bottom: 0;
+    }
+    #trashBtn{
+        justify-content: space-between;
+        direction: ltr;
+    }
+    
+    #trashIcon{
+        transform: translateY(25%);
+    }
+    .clear-options{
+        transform: translateY(-25%) translateX(-1.5%);
+        text-align: left;
+    }
+
+    .clear-options.open{
+        position: absolute;
+        display: block;
+        transform: translateY(0%) translateX(-1.5%);
+        background-color: rgb(230, 230, 230);
+        text-align: left;
+        opacity: 1;
+        z-index: unset;
+        pointer-events: all;
+    }
+}
+
+@media only screen and (min-width: 350px) and (max-width: 720px){
     #infoContainer{
-        width: 75%;
+        width: 70%;
+    }
+    .buttons-container{
+        justify-content: center;
+    }
+    #addMoreBtn,
+    #autoPlayBtn,
+    #trashBtn,
+    #delayBtn{
+        min-width: 4rem;
+        margin: 0 0.5rem;
+        min-height: 2.5rem;
+    }
+
+    #trashContainer{
+        margin-left: 0;
+        direction: rtl;
+        margin-bottom: 0;
+    }
+    #trashBtn{
+        justify-content: space-between;
+        direction: ltr;
+    }
+    
+    #trashIcon{
+        transform: translateY(25%);
+    }
+    .clear-options{
+        transform: translateY(-25%) translateX(-4%);
+        text-align: left;
+    }
+
+    .clear-options.open{
+        position: absolute;
+        display: block;
+        transform: translateY(0%) translateX(-4%);
+        background-color: rgb(230, 230, 230);
+        text-align: left;
+        opacity: 1;
+        z-index: unset;
+        pointer-events: all;
     }
 }
