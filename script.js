@@ -1,6 +1,5 @@
 const buttons = document.querySelectorAll(".btn");
 const playBtn = document.querySelector("#autoPlayBtn");
-const templateImgsBtn = document.querySelector("#useTemplateImgs");
 const uploadBtn = document.querySelector("#uploadBtn");
 uploadBtn.classList.add("animated");
 const uploadInput = document.querySelector("#uploadInput");
@@ -26,6 +25,7 @@ imgCount.innerHTML = `${count} images`;
 const playingMsg = document.querySelector("#playing");
 const imgContainerParagraph = document.querySelector("#imgContainerParagraph");
 let imgArray = [];
+// const templateImgsBtn = document.querySelector("#useTemplateImgs");
 // let templateImgs = [];
 const setDelayBtn = document.querySelector("#setBtn");
 const delayInput = document.querySelector("#delayInput");
