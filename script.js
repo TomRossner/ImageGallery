@@ -79,15 +79,14 @@ playBtn.addEventListener("click", () =>{
                 for(let i = 0; i < imgArray.length; i++){
                     displayNone(imgArray[i]);
                     imgArray[i].classList.remove("active");
+                    imgArray[currentIndex].style.animation = `${delay / 1000}s scale, fadeIn 2s`;
                 }
                 displayImg(imgArray[currentIndex]);
-                imgArray[currentIndex].style.animation = `${delay / 1000}s scale, fadeIn 2s`;
                 }, delay);
         }
         if(autoPlayStatus === true){
             autoPlayStatus = false;
             enableButton(trashBtn);
-            trashBtn.style.pointerEvents = "all";
             clearInterval(autoPlay);
             for(let i = 0; i < imgArray.length; i++){
                 displayNone(imgArray[i]);
