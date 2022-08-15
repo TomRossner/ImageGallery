@@ -179,25 +179,6 @@ zoomOut.addEventListener("click", () => {
     disableButton(zoomOut);
 })
 
-clearAll.addEventListener("click", () => {
-
-    disableButton(playBtn);
-    disableButton(delayBtn);
-    disableButton(trashBtn);
-    closeTrashOptions();
-    // disableButton(trashBtn);
-    imgContainerParagraph.innerHTML = `Cleared  ${count} images.`;
-    imgContainerParagraph.style.display = "block";
-    imgContainerParagraph.style.color = "white";
-    imgContainerParagraph.style.backgroundColor = "#c1121f";
-    imgArray = clearArray(imgArray);
-    count = imgArray.length;
-
-    updateCountMsg(imgArray);
-    handleInfoMsgs(status, count);
-    collapseImgContainer(imgArray);
-})
-
 setDelayBtn.addEventListener("click", () => {
     delay = delayInput.value;
     playingMsg.style.opacity = 1;
@@ -300,6 +281,25 @@ clearCurrent.addEventListener("click", () => {
         array.splice(indexToClear, 1);
         return array;
     }
+})
+
+clearAll.addEventListener("click", () => {
+
+    disableButton(playBtn);
+    disableButton(delayBtn);
+    disableButton(trashBtn);
+    closeTrashOptions();
+    // disableButton(trashBtn);
+    imgContainerParagraph.innerHTML = `Cleared  ${count} images.`;
+    imgContainerParagraph.style.display = "block";
+    imgContainerParagraph.style.color = "white";
+    imgContainerParagraph.style.backgroundColor = "#c1121f";
+    imgArray = clearArray(imgArray);
+    count = imgArray.length;
+
+    updateCountMsg(imgArray);
+    handleInfoMsgs(status, count);
+    collapseImgContainer(imgArray);
 })
 
 
