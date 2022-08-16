@@ -295,7 +295,6 @@ clearAll.addEventListener("click", () => {
     disableButton(delayBtn);
     disableButton(trashBtn);
     closeTrashOptions();
-    // disableButton(trashBtn);
     imgContainerParagraph.innerHTML = `Cleared  ${count} images.`;
     imgContainerParagraph.style.display = "block";
     imgContainerParagraph.style.color = "white";
@@ -306,7 +305,7 @@ clearAll.addEventListener("click", () => {
     updateCountMsg(imgArray);
     handleInfoMsgs(status, count);
     collapseImgContainer(imgArray);
-    uploadImagesBtn.classList.add("animated");
+    uploadBtn.classList.add("animated");
 })
 
 
