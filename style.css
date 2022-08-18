@@ -8,6 +8,7 @@
 
 body{
     overflow: hidden;
+    /* min-height: 100%; */
 }
 
 .container{
@@ -185,24 +186,6 @@ input#uploadInput{
     animation: uploadBtnAnimation 2s infinite;
 }
 
-@keyframes uploadBtnAnimation {
-    0%{
-        transform: rotate(0deg) scale(1);
-    }
-    55%{
-        transform: rotate(0deg) scale(1);
-    }
-    60%{transform: rotate(-5deg) scale(1.05)}
-    65%{transform: rotate(5deg) scale(1.05)}
-    70%{transform: rotate(-5deg) scale(1.05)}
-    75%{transform: rotate(5deg) scale(1.05)}
-    80%{transform: rotate(-5deg) scale(1.05)}
-    85%{transform: rotate(5deg) scale(1.05)}
-    100%{
-        transform: rotate(0deg) scale(1);
-    }
-}
-
 input, .btn{
     cursor: pointer;
 }
@@ -327,7 +310,7 @@ input#delayInput:focus-visible{
 img{
     width: 100%;
     transition: opacity 0.3s;
-    opacity: 0;
+    /* opacity: 0; */
 }
 img.active{
     opacity: 1;
@@ -369,6 +352,50 @@ img.active{
     }
 }
 
+@keyframes uploadBtnAnimation {
+    0%{
+        transform: rotate(0deg) scale(1);
+    }
+    55%{
+        transform: rotate(0deg) scale(1);
+    }
+    60%{transform: rotate(-5deg) scale(1.05)}
+    65%{transform: rotate(5deg) scale(1.05)}
+    70%{transform: rotate(-5deg) scale(1.05)}
+    75%{transform: rotate(5deg) scale(1.05)}
+    80%{transform: rotate(-5deg) scale(1.05)}
+    85%{transform: rotate(5deg) scale(1.05)}
+    100%{
+        transform: rotate(0deg) scale(1);
+    }
+}
+
+
+/* .grid-container{
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(4, minmax(200px, 1fr));
+    grid-auto-flow: row dense;
+    grid-gap: 1rem;
+    margin: 4rem 0;
+    padding: 3rem;
+    align-items: center;
+    justify-items: center;
+}
+
+.grid-container img{
+    width: 100%;
+    place-self: top left;
+    border-radius: 5px;
+    box-shadow: 0 0 10px 2px rgba(0, 0, 0, 0.3);
+    object-fit: cover;
+    aspect-ratio: auto 16 / 9;
+    min-height: 100%;
+}
+
+.grid-container img:hover{
+    outline: 2px solid black;
+} */
 
 
 

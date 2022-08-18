@@ -25,6 +25,7 @@ imgCount.innerHTML = `${count} images`;
 const playingMsg = document.querySelector("#playing");
 const imgContainerParagraph = document.querySelector("#imgContainerParagraph");
 let imgArray = [];
+let gridArray = [];
 // const templateImgsBtn = document.querySelector("#useTemplateImgs");
 // let templateImgs = [];
 const setDelayBtn = document.querySelector("#setBtn");
@@ -50,6 +51,7 @@ collapseImgContainer(imgArray);
 handleInfoMsgs(autoPlayStatus, count);
 count === 0 ? turnOff(trashBtn) : turnOn(trashBtn);
 count === 0 ? turnOff(playBtn) : turnOn(playBtn);
+// const gridContainer = document.querySelector(".grid-container");
 
 
 
@@ -124,6 +126,15 @@ uploadInput.addEventListener("change", () => {
             displayNone(imgContainerParagraph);
             imgContainer.style.backgroundColor = "rgb(30, 30, 30)";
             imgArray.push(img);
+        }
+        for (let i = 0; i < uploadInput.files.length; i++){
+            let img = document.createElement("img");
+            img.src = URL.createObjectURL(uploadInput.files[i]);
+            img.addEventListener("load", () => {
+                URL.revokeObjectURL(this.src);
+                gridContainer.appendChild(img);
+            })
+            gridArray.push(img);
         }
         for(let i = 0; i < imgArray.length; i++){
             displayNone(imgArray[i]);
