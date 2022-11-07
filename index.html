@@ -7,6 +7,7 @@
     <title>Image Gallery</title>
     <link rel="stylesheet" href="./style.css">
     <link href='https://unpkg.com/css.gg/icons/all.css' rel='stylesheet'>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
     <script defer src="./script.js"></script>
 </head>
 <body>
@@ -22,7 +23,7 @@
             <p id="playing"></p>
             <p id="imgCount"></p>
         </div>
-        <p id="imgContainerParagraph">Upload images from your device to start.<br>Note: Only images in Landscape Mode are supported.</p>
+        <p id="imgContainerParagraph">Upload images from your device to start.<br><span>Note: Only images in Landscape Mode are supported.</span></p>
         <div class="buttons-container">
             <input type="number" name="delayInput" id="delayInput" min="2" max="99" step="1"><button class="btn" id="setBtn">Set</button>
             <button class="btn" id="delayBtn"><i id="delayIcon" class="gg-timer"></i></button>
@@ -42,7 +43,9 @@
                 </div>
             </div>
         </div>
+        <div class="clear"></div>
         <!-- <div class="grid-container"></div> -->
+        <footer><p>by Tom Rossner&copy; <a id="githubLink" href="https://github.com/TomRossner"><i id="githubIcon" class="bi bi-github"></i></a></p></footer>
     </div>
 </body>
 </html>

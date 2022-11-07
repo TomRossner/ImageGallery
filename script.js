@@ -127,15 +127,15 @@ uploadInput.addEventListener("change", () => {
             imgContainer.style.backgroundColor = "rgb(30, 30, 30)";
             imgArray.push(img);
         }
-        for (let i = 0; i < uploadInput.files.length; i++){
-            let img = document.createElement("img");
-            img.src = URL.createObjectURL(uploadInput.files[i]);
-            img.addEventListener("load", () => {
-                URL.revokeObjectURL(this.src);
-                gridContainer.appendChild(img);
-            })
-            gridArray.push(img);
-        }
+        // for (let i = 0; i < uploadInput.files.length; i++){
+        //     let img = document.createElement("img");
+        //     img.src = URL.createObjectURL(uploadInput.files[i]);
+        //     img.addEventListener("load", () => {
+        //         URL.revokeObjectURL(this.src);
+        //         gridContainer.appendChild(img);
+        //     })
+        //     gridArray.push(img);
+        // }
         for(let i = 0; i < imgArray.length; i++){
             displayNone(imgArray[i]);
             imgArray[i].classList.remove("active");
