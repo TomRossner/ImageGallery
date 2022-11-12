@@ -24,10 +24,9 @@ let count = 0;
 imgCount.innerHTML = `${count} images`;
 const playingMsg = document.querySelector("#playing");
 const imgContainerParagraph = document.querySelector("#imgContainerParagraph");
+const imageIMGContainer = document.querySelector(".imageimg");
 let imgArray = [];
 let gridArray = [];
-// const templateImgsBtn = document.querySelector("#useTemplateImgs");
-// let templateImgs = [];
 const setDelayBtn = document.querySelector("#setBtn");
 const delayInput = document.querySelector("#delayInput");
 const delayBtn = document.querySelector("#delayBtn");
@@ -51,7 +50,6 @@ collapseImgContainer(imgArray);
 handleInfoMsgs(autoPlayStatus, count);
 count === 0 ? turnOff(trashBtn) : turnOn(trashBtn);
 count === 0 ? turnOff(playBtn) : turnOn(playBtn);
-// const gridContainer = document.querySelector(".grid-container");
 
 
 
@@ -61,7 +59,7 @@ playBtn.addEventListener("click", () =>{
     canUseAutoPlay(imgArray);
     if(imgArray.length > 1){
         handleBtnContent(playIcon, stopIcon);
-        if(autoPlayStatus === false){
+        if(!autoPlayStatus){
             displayNone(chevronLeft);
             displayNone(chevronRight);
             autoPlay = function(){
@@ -89,7 +87,7 @@ playBtn.addEventListener("click", () =>{
                 displayImg(imgArray[currentIndex]);
                 }, delay);
         }
-        if(autoPlayStatus === true){
+        if(autoPlayStatus){
             autoPlayStatus = false;
             enableButton(trashBtn);
             clearInterval(autoPlay);
@@ -103,10 +101,8 @@ playBtn.addEventListener("click", () =>{
             chevronLeft.style.display = "";
             chevronRight.style.display = "";
         }
-        return;
     }
-    
-});
+})
 
 uploadInput.addEventListener("change", () => {
     uploadBtn.classList.remove("animated");
@@ -120,22 +116,14 @@ uploadInput.addEventListener("change", () => {
             img.src = URL.createObjectURL(uploadInput.files[i]);
             img.addEventListener("load", () => {
                 URL.revokeObjectURL(this.src);
-                imgContainer.appendChild(img);
+                imageIMGContainer.appendChild(img);
+                checkImgHeight(img)
                 collapseImgContainer(imgArray);
             })
             displayNone(imgContainerParagraph);
             imgContainer.style.backgroundColor = "rgb(30, 30, 30)";
             imgArray.push(img);
         }
-        // for (let i = 0; i < uploadInput.files.length; i++){
-        //     let img = document.createElement("img");
-        //     img.src = URL.createObjectURL(uploadInput.files[i]);
-        //     img.addEventListener("load", () => {
-        //         URL.revokeObjectURL(this.src);
-        //         gridContainer.appendChild(img);
-        //     })
-        //     gridArray.push(img);
-        // }
         for(let i = 0; i < imgArray.length; i++){
             displayNone(imgArray[i]);
             imgArray[i].classList.remove("active");
@@ -178,7 +166,7 @@ chevronLeft.addEventListener("click", () => {
     // Display Current image
     currentImage = imgArray[currentIndex];
     displayImg(currentImage);
-});
+})
 
 zoomIn.addEventListener("click", () => {
     imgContainer.classList.toggle("expanded");
@@ -443,4 +431,8 @@ function determineCurrentIndex(index, smallestIndex, largestIndex){
 function closeTrashOptions(){
     trashChevronDownIcon.classList.remove("open");
     clearOptionsContainer.classList.remove("open");
+}
+
+function checkImgHeight(img){
+    img.height > 4000 ? img.classList.add("portrait") : null;
 }
