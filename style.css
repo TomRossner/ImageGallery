@@ -417,6 +417,23 @@ img.active{
     flex: 1;
 }
 
+footer{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+}
+
+footer .icons-container{
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+footer span{
+    color: black;
+}
+
 footer p{
     color: black;
     font-family: "Poppins", sans-serif;
@@ -439,7 +456,8 @@ footer a:hover{
     color: black;
 }
 
-footer a #githubIcon.bi.bi-github{
+footer a #githubIcon.bi.bi-github,
+footer a #linkedinIcon.bi.bi-linkedin{
     font-size: 1.5rem;
 }
 
