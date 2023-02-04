@@ -8,7 +8,7 @@ This project was built with:
 - HTML
 - CSS
 
-#### Link: tomrossner.github.io/ImageGallery/
+#### Link: https://tomrossner.github.io/ImageGallery/
 
 ### Features: 
 
